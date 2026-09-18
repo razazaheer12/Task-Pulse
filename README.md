@@ -2,10 +2,9 @@
 
 # ⚡ TaskPulse
 
-### A calm, local-first task manager for focused days.
+### A calm, local-first task manager for focused days, no sign-in required.
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-task--pulse--webapp.netlify.app-7c3aed?style=for-the-badge&logo=netlify&logoColor=white)](https://task-pulse-webapp.netlify.app/)
-[![GitHub](https://img.shields.io/badge/GitHub-razazaheer12%2FTask--Pulse-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/razazaheer12/Task-Pulse)
 [![Next.js](https://img.shields.io/badge/Next.js-16.3-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -261,7 +260,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-<div align="center">
+## Author 
+
+<div>
 
 Built with focus, calm, and ☕ by [Raza Zaheer](https://github.com/razazaheer12)
 
