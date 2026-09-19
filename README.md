@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 # ⚡ TaskPulse
 
@@ -33,7 +33,8 @@ All your data lives directly in your browser via `localStorage`. There is no bac
 
 ### 🗂️ Task Management
 - **Add, edit, and delete tasks** with a frictionless composer interface
-- **Double-click any task** to enter inline edit mode
+- **Double-click any task** (or click the edit icon) to enter inline edit mode
+- **Edit both the task title and priority** simultaneously in inline edit mode
 - **Mark tasks complete** with an animated checkbox
 - **One-click clear** to remove all completed tasks
 - **Persist across sessions** — all tasks survive browser refreshes via `localStorage`
@@ -44,6 +45,24 @@ All your data lives directly in your browser via `localStorage`. There is no bac
   - 🔴 **High** — rose tint
   - 🟡 **Medium** — amber tint
   - 🔵 **Low** — sky tint
+- **Change the priority at any time** — priority pill buttons appear inline during edit mode, pre-selected to the task's current value
+
+### ✏️ Inline Edit Mode
+- Activates by double-clicking a task title or clicking the pencil icon
+- Displays a **text input field** pre-filled with the current title
+- Displays **🔴 High / 🟡 Medium / 🔵 Low** pill buttons to change priority in-place
+- **Enter** or the **✓ Save** button commits both title and priority to `localStorage`
+- **Escape** or the **✗ Cancel** button discards all edits — the task is unchanged
+- Filters, counters, and priority badges all update instantly after saving
+
+### 🗑️ Delete Confirmation Guard
+- Clicking the **trash icon** no longer immediately deletes a task
+- Opens an accessible **confirmation modal** — "Delete Task?"
+- Shows the full task title in the prompt: *"Are you sure you want to delete '[Task Title]'?"*
+- **Cancel** button (ghost style) or **Escape** key closes the modal without deleting
+- **Delete** button (red/destructive) confirms removal and updates `localStorage`
+- Focus is trapped inside the modal for full keyboard accessibility
+- Animated entrance/exit; `Escape` dismissal handled natively by Base UI Dialog
 
 ### 🔍 Smart Filtering
 - Filter the task list by **All**, **Active**, or **Completed** with live counts displayed on each tab
@@ -71,6 +90,7 @@ All your data lives directly in your browser via `localStorage`. There is no bac
 - Toggle to a soft **light theme** from the options menu
 - Theme preference is persisted in `localStorage` across sessions
 - Ambient gradient orbs add depth to the background on both themes
+- All new UI components (edit mode, delete modal) adapt correctly to both themes
 
 ### 📲 Progressive Web App (PWA)
 - Fully installable on **desktop and mobile** via the browser's native install prompt
@@ -80,6 +100,10 @@ All your data lives directly in your browser via `localStorage`. There is no bac
 
 ### ♿ Accessibility
 - All interactive elements have `aria-label` attributes
+- Priority pill buttons use `aria-pressed` to communicate selected state
+- Delete confirmation modal uses `aria-labelledby` / `aria-describedby`
+- **Focus trap** inside the confirmation modal (via Base UI Dialog)
+- `Escape` key dismisses the modal natively
 - Filter tabs implement `role="tablist"` / `role="tab"` / `aria-selected`
 - Menu implements `role="menu"` / `role="menuitem"`
 - Focus-visible outlines on all focusable elements
@@ -88,6 +112,7 @@ All your data lives directly in your browser via `localStorage`. There is no bac
 ### 📱 Responsive Design
 - Adaptive layout from 320 px wide mobile to full desktop
 - Mobile-specific overrides: stacked hero, wrapped composer, hidden keyboard hints
+- On mobile ≤ 640 px: delete modal actions stack vertically for easy tapping; priority pills compact down
 
 ---
 
@@ -118,7 +143,8 @@ Task-Pulse/
 ├── app/
 │   ├── globals.css          # Global styles, CSS custom properties, dark/light themes, responsive layout
 │   ├── layout.tsx           # Root layout: metadata, viewport, Vercel Analytics
-│   └── page.tsx             # Main application shell (onboarding, dashboard, task engine)
+│   └── page.tsx             # Main application shell — onboarding, dashboard, TaskItem component,
+│                            #   DeleteConfirmModal component, task engine logic
 │
 ├── components/
 │   ├── Greeting.tsx         # Client-only component: dynamic time-based greeting + locale date
@@ -199,12 +225,28 @@ pnpm start
 2. **Dashboard** — Your personalised greeting, live date, and task workspace appear.
 3. **Add a Task** — Type in the composer, choose a priority level, and press **Enter** or click **+**.
 4. **Complete a Task** — Click the checkbox on any task row.
-5. **Edit a Task** — Double-click the task title to enter inline edit mode. Press **Enter** to save or **Escape** to cancel.
-6. **Delete a Task** — Hover a task to reveal the action buttons, then click the trash icon.
+5. **Edit a Task** — Double-click the task title or click the ✏️ pencil icon to enter inline edit mode.
+   - Update the **title** in the text field.
+   - Change the **priority** by clicking 🔴 High, 🟡 Medium, or 🔵 Low.
+   - Press **Enter** or click **✓** to save both changes, or press **Escape** / click **✗** to cancel.
+6. **Delete a Task** — Hover a task to reveal the action buttons, then click the 🗑️ trash icon.
+   - A confirmation modal will appear. Click **Delete** to confirm, or **Cancel** / press **Escape** to abort.
 7. **Filter Tasks** — Click **All**, **Active**, or **Completed** tabs above the list.
 8. **Toggle Theme** — Open the **⋯** menu → *Use light / dark mode*.
 9. **Install as App** — Click **Install app** in the top bar (when your browser supports it).
 10. **Reset** — Open the **⋯** menu → *Reset app data* to clear everything and start fresh.
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+| Key | Action |
+|---|---|
+| `Enter` (in composer) | Add new task |
+| `Double-click` task title | Enter inline edit mode |
+| `Enter` (in edit mode) | Save title + priority changes |
+| `Escape` (in edit mode) | Cancel edits, restore original values |
+| `Escape` (modal open) | Close delete confirmation modal without deleting |
 
 ---
 
@@ -221,7 +263,7 @@ The only external call is Vercel Analytics in production (anonymous page-view te
 
 | Key | Contents |
 |---|---|
-| `taskpulse-todos` | JSON array of all tasks |
+| `taskpulse-todos` | JSON array of all tasks (id, text, completed, priority) |
 | `taskpulse-user-name` | Your display name |
 | `taskpulse-theme` | `"dark"` or `"light"` |
 
