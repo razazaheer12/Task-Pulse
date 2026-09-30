@@ -1,8 +1,6 @@
 <div align="center">
 
-# ⚡ TaskPulse
-
-### A calm, local-first task manager for focused days, no sign-in required.
+# ⚡ TaskPulse 
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-task--pulse--webapp.netlify.app-7c3aed?style=for-the-badge&logo=netlify&logoColor=white)](https://task-pulse-webapp.netlify.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-16.3-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
@@ -14,11 +12,6 @@
 
 </div>
 
-<img width="931" height="431" alt="image" src="https://github.com/user-attachments/assets/c8fe62b2-2a36-422f-8e00-fc54400da554" />
-
-
----
-
 ## 📌 Overview
 
 **TaskPulse** is a minimalist, local-first task management progressive web app (PWA) built with Next.js 16, React 19, and TypeScript. It is designed with a singular purpose — helping you stay focused on what matters most, without distractions, accounts, or cloud lock-in.
@@ -27,7 +20,8 @@ All your data lives directly in your browser via `localStorage`. There is no bac
 
 > *"A calm space for your most important work."*
 
----
+<img width="931" height="431" alt="image" src="https://github.com/user-attachments/assets/c8fe62b2-2a36-422f-8e00-fc54400da554" />
+
 
 ## ✨ Features
 
