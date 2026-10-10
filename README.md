@@ -21,6 +21,8 @@ All your data lives directly in your browser via `localStorage`. There is no bac
 > *"A calm space for your most important work."*
 
 <img width="931" height="431" alt="image" src="https://github.com/user-attachments/assets/c8fe62b2-2a36-422f-8e00-fc54400da554" />
+<img width="941" height="433" alt="image" src="https://github.com/user-attachments/assets/f0eccea6-f53c-498c-843c-7e1eba6fbded" />
+
 
 
 ## ✨ Features
